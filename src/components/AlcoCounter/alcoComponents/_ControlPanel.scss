@@ -1,0 +1,61 @@
+// @import "../../../../less/variables";
+
+.control-panel {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+  max-width: 400px;
+  margin: 0.75rem;
+  padding: 0 1rem 1rem;
+
+  &__header {
+    @extend %header__h2;
+    margin: 0;
+
+    &--white-theme {
+      text-shadow: $shadow-size--sm
+        $shadow-color--white-theme;
+      color: $header-color--white-theme;
+    }
+    &--dark-theme {
+      box-shadow: none;
+      color: $header-color--dark-theme;
+    }
+  }
+
+  &__inputs-container {
+    width: 100%;
+    margin: 3px;
+  }
+
+  &__inputs-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 3px;
+
+    &--direction-column {
+      flex-direction: column;
+    }
+  }
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  &--white-theme {
+    border: 1px solid grey;
+    border-radius: $box--brd-radius;
+    box-shadow: $shadow-size--md $shadow-blur--md
+      $shadow-color--white-theme;
+    background-color: $display-bgc--white-theme;
+  }
+  &--dark-theme {
+    background-color: $display-bgc--dark-theme;
+    box-shadow: none;
+    color: $text-color--dark-theme;
+  }
+}

@@ -1,0 +1,35 @@
+// @import '../../../../../less/variables';
+
+.input-box {
+  text-align: center;
+  &__label {
+    margin: 5px;
+  }
+  &__wrap {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+
+    &--direction-column {
+      flex-direction: column;
+      max-width: 5rem;
+    }
+  }
+  &__input {
+    padding: 3px 0;
+    max-width: 3.75rem;
+    border-radius: $button--brd-radius;
+    font-size: 1rem;
+    text-align: center;
+    // margin: 0.4rem 0;
+
+    &--white-theme {
+      color: $text-color--white-theme;
+      background-color: white;
+    }
+    &--dark-theme {
+      color: $text-color--dark-theme;
+      background-color: rgb(73, 89, 80);
+    }
+  }
+}

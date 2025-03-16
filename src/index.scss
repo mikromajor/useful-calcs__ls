@@ -1,0 +1,11 @@
+@import "./less/normalize";
+@import "./less/variables";
+@import "./App";
+@import "./components/Salary/Salary";
+@import "./components/SelectLanguage/SelectLanguage";
+@import "./components/AlcoCounter/AlcoCounter";
+@import "./components/AlcoCounter/Calendar";
+
+@import "./components/AlcoCounter/alcoComponents/Display";
+@import "./components//AlcoCounter/alcoComponents/ControlPanel";
+@import "./components/AlcoCounter/alcoComponents/Input";
