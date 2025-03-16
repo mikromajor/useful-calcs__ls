@@ -1,4 +1,4 @@
-import { SALARY_CONTENT } from "constants/salaryConstants";
+// import { SALARY_CONTENT } from "constants/salaryConstants";
 
 export type SalaryInit = {
   year: number;

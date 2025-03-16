@@ -4,6 +4,7 @@
   "version": "0.4.0",
   "author": "alex.solianyk",
   "description": "alco-calendar and poland salary calculator",
+  "homepage": "https://mikromajor.github.io/useful-calcs__ls/",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +12,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
     "type-check": "tsc -p tsconfig.json --pretty --noEmit && echo"
   },
   "dependencies": {
