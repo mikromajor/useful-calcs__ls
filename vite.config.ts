@@ -14,4 +14,5 @@ export default defineConfig({
       lib: "/src/lib",
     },
   },
+  base: "/useful-calcs__ls/",
 });

@@ -7,7 +7,7 @@ export const INIT_APP_STATE = {
 
 export const APP_CONTENT = {
   [AppLanguages.EN]: {
-    lblTheme: "theme",
+    lblTheme: "Theme",
     btnChangeCalc: "Change calculator",
     lblLang: "Change language:",
     [AppThemes.DARK]: "Black",
@@ -16,11 +16,11 @@ export const APP_CONTENT = {
     goToSalary: "Salary",
   },
   [AppLanguages.PL]: {
-    lblTheme: "theme",
+    lblTheme: "Motyw",
     btnChangeCalc: "Zmień kalkulator",
     lblLang: "Zmień język",
-    [AppThemes.DARK]: "Ciemna",
-    [AppThemes.WHITE]: "Światła",
+    [AppThemes.DARK]: "Ciemny",
+    [AppThemes.WHITE]: "Jasny",
     goToAlcoCalc: "Alko-kalendarz",
     goToSalary: "Wypłata",
   },
