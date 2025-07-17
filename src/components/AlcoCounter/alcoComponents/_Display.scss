@@ -13,8 +13,7 @@
     margin-bottom: 0.5rem;
 
     &--white-theme {
-      text-shadow: $shadow-size--sm
-        $shadow-color--white-theme;
+      text-shadow: $shadow-size--sm $shadow-color--white-theme;
       color: $header-color--white-theme;
     }
     &--dark-theme {
@@ -27,8 +26,7 @@
     border-radius: $cell--brd-radius;
 
     &--white-theme {
-      box-shadow: $shadow-size--md $shadow-blur--md
-        $shadow-color--white-theme;
+      box-shadow: $shadow-size--md $shadow-blur--md $shadow-color--white-theme;
     }
     &--dark-theme {
       box-shadow: none;
@@ -59,10 +57,10 @@
     }
   }
   &__td {
-    border-radius: $cell--brd-radius;
+    // border-radius: $cell--brd-radius;
     padding: 0.5rem 1rem;
     text-align: center;
-    border: 1px solid black;
+    // border: 1px solid black;
     min-width: 3.5rem;
 
     &--white-theme {
@@ -81,8 +79,7 @@
 
   &--white-theme {
     background-color: $display-bgc--white-theme;
-    box-shadow: $shadow-size--md $shadow-blur--md
-      $shadow-color--white-theme;
+    box-shadow: $shadow-size--md $shadow-blur--md $shadow-color--white-theme;
     border: 1px solid $box-border-color--white-theme;
     color: black;
   }

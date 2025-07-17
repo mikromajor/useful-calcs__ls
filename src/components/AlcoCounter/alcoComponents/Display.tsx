@@ -25,26 +25,27 @@ export const Display = () => {
     }, 500);
     return () => clearTimeout(backlightTimer);
   }, [totalForDay]);
+  const alkoContent = content[language];
 
   return (
     <table className='display' data-testid='display'>
       <caption id='caption' className={`display__header display__header--${currentTheme}`}>
-        {content[language].caption}
+        {alkoContent.caption}
       </caption>
       <tbody className={`display__body display__body--${currentTheme}`}>
         <tr className={`display__tr display__tr--${currentTheme}`}>
           <th className={`display__th display__th--${currentTheme}`}>
-            {content[language].lblDay}
+            {alkoContent.lblDay}
             <br />
             {day}
           </th>
           <th className={`display__th display__th--${currentTheme}`}>
-            {content[language].lblMonth}
+            {alkoContent.lblMonth}
             <br />
             {month}
           </th>
           <th className={`display__th display__th--${currentTheme}`}>
-            {content[language].lblYear}
+            {alkoContent.lblYear}
             <br />
             {year}
           </th>

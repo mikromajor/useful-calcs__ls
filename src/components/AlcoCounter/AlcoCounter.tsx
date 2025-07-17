@@ -5,9 +5,10 @@ export const AlcoCounter = () => {
     <>
       <div className='alco-counter '>
         <AlcoHeader />
-        <Display />
-        <CalendarDayInfo />
         <ControlPanel />
+        <CalendarDayInfo />
+
+        <Display />
       </div>
     </>
   );
