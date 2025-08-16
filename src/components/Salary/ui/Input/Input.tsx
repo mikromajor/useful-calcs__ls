@@ -32,7 +32,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
 
   return (
     <>
-      <button className='salary__change-for-one' onClick={() => changeByOne(-1)}>
+      <button className={`salary__change-by-one salary__change-by-one--${currentTheme}`} onClick={() => changeByOne(-1)}>
         -1
       </button>
       <input
@@ -48,7 +48,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
         value={String(salaryReducer[payloadsKey])}
       />
 
-      <button className='salary__change-by-one' onClick={() => changeByOne(1)}>
+      <button className={`salary__change-by-one salary__change-by-one--${currentTheme}`} onClick={() => changeByOne(1)}>
         +1
       </button>
     </>

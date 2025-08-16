@@ -123,10 +123,19 @@
     border-radius: 5px;
     font-size: $font-size--p;
 
-    background-color: rgb(173, 173, 173);
-    cursor: pointer;
-    &:hover {
+    &--white-theme {
+      background-color: rgb(173, 173, 173);
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(111, 111, 111);
+      }
+    }
+    &--dark-theme {
       background-color: rgb(111, 111, 111);
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(173, 173, 173);
+      }
     }
   }
 }
