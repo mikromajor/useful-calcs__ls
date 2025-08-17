@@ -1,4 +1,4 @@
-@import "../../less/variables";
+@use "../../less/variables";
 
 %td__basic-styles {
   text-align: center;
@@ -7,7 +7,7 @@
   min-height: 30px; //необхідно для того щоб нащадок "input"
   height: 1px; // зміг прийняти height:100%;
   border: 2px solid;
-  font-size: $font-size--p;
+  font-size: variables.$font-size--p;
   // &:hover {
   //   background-color: rgb(97, 143, 48);
   // }
@@ -36,12 +36,12 @@
     margin-bottom: 10px;
 
     &--white-theme {
-      text-shadow: $shadow-size--sm $shadow-color--white-theme;
-      color: $header-color--white-theme;
+      text-shadow: variables.$shadow-size--sm variables.$shadow-color--white-theme;
+      color: variables.$header-color--white-theme;
     }
     &--dark-theme {
       text-shadow: none;
-      color: $header-color--dark-theme;
+      color: variables.$header-color--dark-theme;
     }
   }
   &__tr {
@@ -64,11 +64,11 @@
 
     &--white-theme {
       background-color: rgb(153, 183, 236);
-      color: $header-color--white-theme;
+      color: variables.$header-color--white-theme;
     }
     &--dark-theme {
       background-color: rgb(0, 0, 0);
-      color: $header-color--dark-theme;
+      color: variables.$header-color--dark-theme;
     }
   }
   &__td {
@@ -97,15 +97,19 @@
       color: rgb(221, 221, 221);
     }
   }
+  &__input-wrapper {
+    display: flex;
+    height: 100%;
+  }
 
   &__input {
     height: 100%;
-    width: 60px;
+    // width: 60px;
     margin: 0;
     border: none;
     border-radius: 5px;
     text-align: center;
-    font-size: $font-size--p;
+    font-size: variables.$font-size--p;
     &:hover {
       background-color: rgb(152, 154, 69);
     }
@@ -118,10 +122,10 @@
     }
   }
   &__change-by-one {
-    width: 30px;
+    max-width: 30px;
     border: none;
     border-radius: 5px;
-    font-size: $font-size--p;
+    font-size: variables.$font-size--p;
 
     &--white-theme {
       background-color: rgb(173, 173, 173);

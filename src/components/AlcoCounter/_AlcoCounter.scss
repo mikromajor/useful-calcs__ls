@@ -1,3 +1,4 @@
+@use "../../less/variables";
 .alco-counter {
   display: flex;
   flex-flow: column wrap;
@@ -9,16 +10,15 @@
   &__header {
     text-align: center;
     margin: 0;
-    font-size: $font-size--h1;
-    font-weight: $font-weight--h1;
+    font-size: variables.$font-size--h1;
+    font-weight: variables.$font-weight--h1;
 
     &--white-theme {
-      color: $header-color--white-theme;
-      text-shadow: $shadow-size--sm
-        $shadow-color--white-theme;
+      color: variables.$header-color--white-theme;
+      text-shadow: variables.$shadow-size--sm variables.$shadow-color--white-theme;
     }
     &--dark-theme {
-      color: $header-color--dark-theme;
+      color: variables.$header-color--dark-theme;
       text-shadow: none;
     }
   }
@@ -40,8 +40,7 @@
   }
   &__show-calendar-btn {
     &--white-theme {
-      box-shadow: $shadow-size--md $shadow-blur--md
-        $shadow-color--white-theme;
+      box-shadow: variables.$shadow-size--md variables.$shadow-blur--md variables.$shadow-color--white-theme;
     }
   }
 
@@ -60,8 +59,7 @@
     }
     &--white-theme {
       button {
-        box-shadow: $shadow-size--md $shadow-blur--md
-          $shadow-color--white-theme;
+        box-shadow: variables.$shadow-size--md variables.$shadow-blur--md variables.$shadow-color--white-theme;
         color: rgb(200, 0, 0);
 
         &:hover {

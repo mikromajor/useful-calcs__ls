@@ -31,7 +31,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
   };
 
   return (
-    <>
+    <div className='salary__input-wrapper'>
       <button className={`salary__change-by-one salary__change-by-one--${currentTheme}`} onClick={() => changeByOne(-1)}>
         -1
       </button>
@@ -51,6 +51,6 @@ export const Input = ({ payloadsKey }: InputProps) => {
       <button className={`salary__change-by-one salary__change-by-one--${currentTheme}`} onClick={() => changeByOne(1)}>
         +1
       </button>
-    </>
+    </div>
   );
 };

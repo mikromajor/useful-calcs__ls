@@ -1,4 +1,4 @@
-// @import "../../../../less/variables";
+@use "../../../less/variables";
 
 .control-panel {
   display: flex;
@@ -14,13 +14,12 @@
     margin: 0;
 
     &--white-theme {
-      text-shadow: $shadow-size--sm
-        $shadow-color--white-theme;
-      color: $header-color--white-theme;
+      text-shadow: variables.$shadow-size--sm variables.$shadow-color--white-theme;
+      color: variables.$header-color--white-theme;
     }
     &--dark-theme {
       box-shadow: none;
-      color: $header-color--dark-theme;
+      color: variables.$header-color--dark-theme;
     }
   }
 
@@ -48,14 +47,13 @@
 
   &--white-theme {
     border: 1px solid grey;
-    border-radius: $box--brd-radius;
-    box-shadow: $shadow-size--md $shadow-blur--md
-      $shadow-color--white-theme;
-    background-color: $display-bgc--white-theme;
+    border-radius: variables.$box--brd-radius;
+    box-shadow: variables.$shadow-size--md variables.$shadow-blur--md variables.$shadow-color--white-theme;
+    background-color: variables.$display-bgc--white-theme;
   }
   &--dark-theme {
-    background-color: $display-bgc--dark-theme;
+    background-color: variables.$display-bgc--dark-theme;
     box-shadow: none;
-    color: $text-color--dark-theme;
+    color: variables.$text-color--dark-theme;
   }
 }

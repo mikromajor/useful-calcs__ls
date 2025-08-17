@@ -1,3 +1,4 @@
+@use "./less/variables";
 body,
 html {
   margin: 0;
@@ -26,9 +27,9 @@ html {
   }
 
   &--white-theme {
-    background-color: $app__bgc--white-theme;
+    background-color: variables.$app__bgc--white-theme;
   }
   &--dark-theme {
-    background-color: $app__bgc--dark-theme;
+    background-color: variables.$app__bgc--dark-theme;
   }
 }

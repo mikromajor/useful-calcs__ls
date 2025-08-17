@@ -1,11 +1,11 @@
-// @import'../../../../less/variables';
+@use "../../../less/variables";
 
 .display {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: space-around;
-  border-radius: $box--brd-radius;
+  border-radius: variables.$box--brd-radius;
   margin: 0.75rem;
 
   &__header {
@@ -13,20 +13,20 @@
     margin-bottom: 0.5rem;
 
     &--white-theme {
-      text-shadow: $shadow-size--sm $shadow-color--white-theme;
-      color: $header-color--white-theme;
+      text-shadow: variables.$shadow-size--sm variables.$shadow-color--white-theme;
+      color: variables.$header-color--white-theme;
     }
     &--dark-theme {
-      text-shadow: $shadow-color--dark-theme;
-      color: $header-color--dark-theme;
+      text-shadow: variables.$shadow-color--dark-theme;
+      color: variables.$header-color--dark-theme;
     }
   }
 
   &__body {
-    border-radius: $cell--brd-radius;
+    border-radius: variables.$cell--brd-radius;
 
     &--white-theme {
-      box-shadow: $shadow-size--md $shadow-blur--md $shadow-color--white-theme;
+      box-shadow: variables.$shadow-size--md variables.$shadow-blur--md variables.$shadow-color--white-theme;
     }
     &--dark-theme {
       box-shadow: none;
@@ -34,7 +34,7 @@
   }
 
   &__tr {
-    border-radius: $cell--brd-radius;
+    border-radius: variables.$cell--brd-radius;
 
     &--white-theme {
       border: 2px solid grey;
@@ -45,7 +45,7 @@
   }
 
   &__th {
-    border-radius: $cell--brd-radius;
+    border-radius: variables.$cell--brd-radius;
     padding: 0.5rem 1rem;
 
     &--white-theme {
@@ -53,11 +53,11 @@
     }
     &--dark-theme {
       background-color: rgb(15, 118, 84);
-      color: $text-color--dark-theme;
+      color: variables.$text-color--dark-theme;
     }
   }
   &__td {
-    // border-radius: $cell--brd-radius;
+    // border-radius: variables.$cell--brd-radius;
     padding: 0.5rem 1rem;
     text-align: center;
     // border: 1px solid black;
@@ -70,7 +70,7 @@
     &--dark-theme {
       border-color: whitesmoke;
       background-color: rgb(73, 89, 80);
-      color: $text-color--dark-theme;
+      color: variables.$text-color--dark-theme;
     }
     &--backlightColor {
       background-color: rgb(17, 158, 197);
@@ -78,16 +78,16 @@
   }
 
   &--white-theme {
-    background-color: $display-bgc--white-theme;
-    box-shadow: $shadow-size--md $shadow-blur--md $shadow-color--white-theme;
-    border: 1px solid $box-border-color--white-theme;
+    background-color: variables.$display-bgc--white-theme;
+    box-shadow: variables.$shadow-size--md variables.$shadow-blur--md variables.$shadow-color--white-theme;
+    border: 1px solid variables.$box-border-color--white-theme;
     color: black;
   }
 
   &--dark-theme {
-    background-color: $display-bgc--dark-theme;
+    background-color: variables.$display-bgc--dark-theme;
     box-shadow: none;
-    border: 1px solid $box-border-color--dark-theme;
+    border: 1px solid variables.$box-border-color--dark-theme;
     color: rgb(32, 136, 148);
   }
 }
