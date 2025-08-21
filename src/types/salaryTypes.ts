@@ -3,14 +3,15 @@
 export type SalaryInit = {
   year: number;
   month: number;
-  salaryRate: number;
+  salaryRateGrossPerHour: number;
+  salaryRateGrossPerMonth: number;
   premiumRate: number;
   premiumUzn: number;
   taxRate: number;
   nettoPerHours: number;
-  weekDays: number;
+  workDays: number;
   weekendDays: number;
-  standardWorkHours: number;
+  workHours: number;
   extraHours_50: number;
   extraHours_100: number;
   extraHours_120: number;
@@ -30,7 +31,7 @@ export type PayloadType = {
   month?: number;
   year?: number;
 
-  salaryRate?: number;
+  salaryRateGrossPerHour?: number;
   premiumRate?: number;
   premiumUzn?: number;
   taxRate?: number;

@@ -15,7 +15,7 @@ export const determineVacationPayCoefficient = (state: SalaryInit): number => {
     const item = window.localStorage.getItem(pastsDateKey);
     const savedData = !!item && (JSON.parse(item) as SalaryInit);
 
-    vacationPayCoefficientPerDay += !!savedData ? savedData.totalSalary / savedData.weekDays : 8 * state.nettoPerHours;
+    vacationPayCoefficientPerDay += !!savedData ? savedData.totalSalary / savedData.workDays : 8 * state.nettoPerHours;
   }
 
   return vacationPayCoefficientPerDay / 3;

@@ -10,7 +10,7 @@ export const determStandardSalary = (state: SalaryInit) => {
     premiumUzn,
     taxRate,
     nettoPerHours,
-    standardWorkHours,
+    workHours,
     usedVacation,
     bloodDonation,
     sickLeaveWeekDays,
@@ -21,7 +21,7 @@ export const determStandardSalary = (state: SalaryInit) => {
 
   const premiumConstPayment = premiumUzn * (1 - taxRate / 100);
 
-  const premiumRatePayment = (premiumRate / 100) * nettoPerHours * standardWorkHours;
+  const premiumRatePayment = (premiumRate / 100) * nettoPerHours * workHours;
 
   const bloodDonationPayment = bloodDonation * 8 * nettoPerHours;
 
@@ -29,10 +29,10 @@ export const determStandardSalary = (state: SalaryInit) => {
 
   const sickPayment = (sickLeaveWeekDays + sickLeaveWeekendDays) * sickCoefficient * nettoPerHours * 8;
 
-  const standardPayment = standardWorkHours * nettoPerHours;
+  const standardPayment = workHours * nettoPerHours;
 
   return Math.round(
-    standardPayment + sickPayment + vacationPayment + bloodDonationPayment + premiumRatePayment + premiumConstPayment
+    standardPayment + sickPayment + vacationPayment + bloodDonationPayment + premiumRatePayment + premiumConstPayment,
   );
 };
 // TODO: зробити хворобові як середнє за останні 12 місяців

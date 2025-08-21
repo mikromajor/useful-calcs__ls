@@ -17,7 +17,7 @@ export const updateStateUsingStore = (state: SalaryInit) => {
       ? (JSON.parse(item) as SalaryInit)
       : {
           ...SALARY_INIT,
-          weekDays: weekdays,
+          workDays: weekdays,
           weekendDays: weekends,
           year: state.year,
           month: state.month,

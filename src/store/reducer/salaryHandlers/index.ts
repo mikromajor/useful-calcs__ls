@@ -12,3 +12,4 @@ export { isNum } from "./isNum";
 export { determineVacationPayCoefficient } from "./determineVacationPayCoefficient";
 export { determExtraSalary } from "./determExtraSalary";
 export { determStandardSalary } from "./determStandardSalary";
+export { determNettoPerHour } from "./determNettoPerHour";

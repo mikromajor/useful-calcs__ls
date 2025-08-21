@@ -1,9 +1,10 @@
-import { amountWeekendsAndWeekdays, isNum, determExtraSalary, determStandardSalary } from ".";
+import { amountWeekendsAndWeekdays, isNum, determExtraSalary, determStandardSalary, determNettoPerHour } from ".";
 import { PayloadType, SalaryInit } from "types/salaryTypes";
 
 export const calculateSalary = (state: SalaryInit, payload: PayloadType) => {
   const {
-    salaryRate,
+    salaryRateGrossPerHour,
+    // salaryRateGrossPerMonth,
     premiumUzn,
     premiumRate,
     taxRate,
@@ -17,15 +18,9 @@ export const calculateSalary = (state: SalaryInit, payload: PayloadType) => {
     bloodDonation,
   } = payload;
 
+  // Calculate the number of weekends and weekdays in the given month
+
   const { weekends, weekdays } = amountWeekendsAndWeekdays(state.year, state.month);
-
-  isNum(salaryRate) && (state.salaryRate = salaryRate);
-
-  isNum(premiumRate) && (state.premiumRate = premiumRate);
-
-  isNum(premiumUzn) && (state.premiumUzn = premiumUzn);
-
-  isNum(taxRate) && (state.taxRate = taxRate);
 
   isNum(sickLeaveWeekDays) && (state.sickLeaveWeekDays = sickLeaveWeekDays);
   isNum(sickLeaveWeekendDays) && (state.sickLeaveWeekendDays = sickLeaveWeekendDays);
@@ -34,9 +29,19 @@ export const calculateSalary = (state: SalaryInit, payload: PayloadType) => {
   isNum(bloodDonation) && (state.bloodDonation = bloodDonation);
   isNum(holidays) && (state.holidays = holidays);
 
-  state.weekDays = weekdays - state.sickLeaveWeekDays - state.holidays - state.usedVacation - state.bloodDonation;
+  state.workDays = weekdays - state.sickLeaveWeekDays - state.holidays - state.usedVacation - state.bloodDonation;
+
+  state.workHours = state.workDays * 8;
 
   state.weekendDays = weekends;
+
+  isNum(salaryRateGrossPerHour) && (state.salaryRateGrossPerHour = salaryRateGrossPerHour);
+
+  isNum(premiumRate) && (state.premiumRate = premiumRate);
+
+  isNum(premiumUzn) && (state.premiumUzn = premiumUzn);
+
+  isNum(taxRate) && (state.taxRate = taxRate);
 
   isNum(extraHours_50) && (state.extraHours_50 = extraHours_50);
 
@@ -44,9 +49,7 @@ export const calculateSalary = (state: SalaryInit, payload: PayloadType) => {
 
   isNum(extraHours_120) && (state.extraHours_120 = extraHours_120);
 
-  state.nettoPerHours = Math.round(state.salaryRate * (1 - state.taxRate / 100) * 100) / 100;
-
-  state.standardWorkHours = state.weekDays * 8;
+  state.nettoPerHours = determNettoPerHour(state);
 
   state.standardSalary = determStandardSalary(state);
 
