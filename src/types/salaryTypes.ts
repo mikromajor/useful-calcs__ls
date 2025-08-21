@@ -32,6 +32,7 @@ export type PayloadType = {
   year?: number;
 
   salaryRateGrossPerHour?: number;
+  salaryRateGrossPerMonth?: number;
   premiumRate?: number;
   premiumUzn?: number;
   taxRate?: number;

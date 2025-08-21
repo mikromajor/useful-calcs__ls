@@ -8,7 +8,7 @@ export const Salary = () => {
 
   const salaryReducer = useAppSelector((state) => state.salaryReducer);
 
-  const tr: JSX.Element[] = [];
+  const rows: JSX.Element[] = [];
   let td: JSX.Element;
   let th: JSX.Element;
   // add compatibility V1 & V2
@@ -23,7 +23,7 @@ export const Salary = () => {
     );
     th = <th className={`salary__th salary__th--${currentTheme}`}>{SALARY_CONTENT?.[currentLang]?.[key]}</th>;
 
-    tr.push(
+    rows.push(
       <tr className={`salary__tr salary__tr--${currentTheme}`} key={String(i) + key}>
         {th}
         {td}
@@ -35,7 +35,7 @@ export const Salary = () => {
     <div className='salary'>
       <table className={`salary__tabel salary__tabel--${currentTheme}`}>
         <caption className={`salary__header salary__header--${currentTheme}`}>{SALARY_CONTENT[currentLang].header}</caption>
-        <tbody>{tr}</tbody>
+        <tbody>{rows}</tbody>
       </table>
     </div>
   );
