@@ -22,7 +22,7 @@ export const updateStateUsingStore = (state: SalaryInit) => {
           year: year,
           month: month,
         };
-    // Check values and set them to 0 if saved value is NaN
+    // Correct values if saved value is NaN
     Object.keys(update).forEach((key) => {
       if (isNaN(update[key as keyof SalaryInit] as number)) {
         update[key as keyof SalaryInit] = 0;
