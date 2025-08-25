@@ -15,7 +15,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
 
   const { getSalary, changeSalaryDate } = salaryActions;
 
-  const handlerInputChange = (val: number) => {
+  const changeInputValue = (val: number) => {
     if (payloadsKey === "month" || payloadsKey === "year") {
       dispatch(changeSalaryDate({ [payloadsKey]: val }));
     } else {
@@ -43,7 +43,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           const val = Number(e.currentTarget.value);
 
-          handlerInputChange(val);
+          changeInputValue(val);
         }}
         value={String(salaryReducer[payloadsKey])}
       />

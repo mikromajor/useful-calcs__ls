@@ -1,29 +1,63 @@
 // import { SALARY_CONTENT } from "constants/salaryConstants";
-
-export type SalaryInit = {
-  year: number;
+interface SalaryDate {
   month: number;
+  year: number;
+}
+interface SalaryRates {
   salaryRateGrossPerHour: number;
   salaryRateGrossPerMonth: number;
   premiumRate: number;
   premiumUzn: number;
   taxRate: number;
+}
+interface SalaryExtraHours {
+  extraHours_50: number;
+  extraHours_100: number;
+  extraHours_120: number;
+}
+interface SalaryWorkDaysDecrements {
+  holidays: number;
+  usedVacation: number;
+  bloodDonation: number;
+  sickLeaveWeekDays: number;
+  sickLeaveWeekendDays: number;
+}
+interface SalaryCalculatedData {
   nettoPerHours: number;
   workDays: number;
   weekendDays: number;
   workHours: number;
-  extraHours_50: number;
-  extraHours_100: number;
-  extraHours_120: number;
-  sickLeaveWeekDays: number;
-  sickLeaveWeekendDays: number;
-  holidays: number;
-  usedVacation: number;
-  bloodDonation: number;
   standardSalary: number;
   extraSalary: number;
   totalSalary: number;
-};
+}
+
+export type SalaryInit = SalaryDate & SalaryRates & SalaryExtraHours & SalaryWorkDaysDecrements & SalaryCalculatedData;
+
+// export type SalaryInit = {
+//   year: number;
+//   month: number;
+//   salaryRateGrossPerHour: number;
+//   salaryRateGrossPerMonth: number;
+//   premiumRate: number;
+//   premiumUzn: number;
+//   taxRate: number;
+//   nettoPerHours: number;
+//   workDays: number;
+//   weekendDays: number;
+//   workHours: number;
+//   extraHours_50: number;
+//   extraHours_100: number;
+//   extraHours_120: number;
+//   sickLeaveWeekDays: number;
+//   sickLeaveWeekendDays: number;
+//   holidays: number;
+//   usedVacation: number;
+//   bloodDonation: number;
+//   standardSalary: number;
+//   extraSalary: number;
+//   totalSalary: number;
+// };
 
 export type KeysSalaryInit = keyof SalaryInit;
 
