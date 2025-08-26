@@ -1,10 +1,10 @@
 import { useAppSelector, useAppDispatch } from "store/hooks/redux";
 
 import { salaryActions } from "store/reducer/salaryReducer";
-import { KeysSalaryInit } from "types/salaryTypes";
+import { KeysSalaryInit, SalaryInputsKeys } from "types/salaryTypes";
 
 type InputProps = {
-  payloadsKey: KeysSalaryInit;
+  payloadsKey: SalaryInputsKeys;
 };
 
 export const Input = ({ payloadsKey }: InputProps) => {
@@ -17,22 +17,47 @@ export const Input = ({ payloadsKey }: InputProps) => {
 
   const changeInputValue = (val: number) => {
     if (payloadsKey === "month" || payloadsKey === "year") {
-      dispatch(changeSalaryDate({ [payloadsKey]: val }));
+      dispatch(
+        changeSalaryDate({
+          ...salaryReducer,
+          [payloadsKey]: val,
+        }),
+      );
     } else {
-      dispatch(getSalary({ [payloadsKey]: val }));
+      dispatch(
+        getSalary({
+          ...salaryReducer,
+          [payloadsKey]: val,
+        }),
+      );
     }
   };
+
   const changeByOne = (val: number) => {
     if (payloadsKey === "month" || payloadsKey === "year") {
-      dispatch(changeSalaryDate({ [payloadsKey]: salaryReducer[payloadsKey] + val }));
+      dispatch(
+        changeSalaryDate({
+          ...salaryReducer,
+          [payloadsKey]: salaryReducer[payloadsKey] + val,
+        }),
+      );
     } else {
-      dispatch(getSalary({ [payloadsKey]: salaryReducer[payloadsKey] + val }));
+      dispatch(
+        getSalary({
+          ...salaryReducer,
+          [payloadsKey]: salaryReducer[payloadsKey] + val,
+        }),
+      );
     }
   };
 
   return (
     <div className='salary__input-wrapper'>
-      <button className={`salary__change-by-one salary__change-by-one--${currentTheme}`} onClick={() => changeByOne(-1)}>
+      <button
+        className={`salary__change-by-one salary__change-by-one--${currentTheme}`}
+        onClick={() => changeByOne(-1)}
+        tabIndex={-1}
+      >
         -1
       </button>
       <input
@@ -48,7 +73,11 @@ export const Input = ({ payloadsKey }: InputProps) => {
         value={String(salaryReducer[payloadsKey])}
       />
 
-      <button className={`salary__change-by-one salary__change-by-one--${currentTheme}`} onClick={() => changeByOne(1)}>
+      <button
+        className={`salary__change-by-one salary__change-by-one--${currentTheme}`}
+        onClick={() => changeByOne(1)}
+        tabIndex={-1}
+      >
         +1
       </button>
     </div>
