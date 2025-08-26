@@ -15,6 +15,7 @@ interface SalaryExtraHours {
   extraHours_100: number;
   extraHours_120: number;
 }
+
 interface SalaryWorkDaysDecrements {
   holidays: number;
   usedVacation: number;
@@ -31,6 +32,12 @@ interface SalaryCalculatedData {
   extraSalary: number;
   totalSalary: number;
 }
+type SalaryInputs = SalaryDate & SalaryRates & SalaryExtraHours & SalaryWorkDaysDecrements;
+export type SalaryInputsKeys = keyof SalaryInputs;
+
+export type PayloadType = {
+  [K in keyof SalaryInputs]: Pick<SalaryInputs, K>;
+}[keyof SalaryInputs];
 
 export type SalaryInit = SalaryDate & SalaryRates & SalaryExtraHours & SalaryWorkDaysDecrements & SalaryCalculatedData;
 
@@ -61,35 +68,35 @@ export type SalaryInit = SalaryDate & SalaryRates & SalaryExtraHours & SalaryWor
 
 export type KeysSalaryInit = keyof SalaryInit;
 
-export type PayloadType = {
-  month?: number;
-  year?: number;
+// export type PayloadType = {
+//   month?: number;
+//   year?: number;
 
-  salaryRateGrossPerHour?: number;
-  salaryRateGrossPerMonth?: number;
-  premiumRate?: number;
-  premiumUzn?: number;
-  taxRate?: number;
+//   salaryRateGrossPerHour?: number;
+//   salaryRateGrossPerMonth?: number;
+//   premiumRate?: number;
+//   premiumUzn?: number;
+//   taxRate?: number;
 
-  extraHours_50?: number;
-  extraHours_100?: number;
-  extraHours_120?: number;
+//   extraHours_50?: number;
+//   extraHours_100?: number;
+//   extraHours_120?: number;
 
-  sickLeaveWeekDays?: number;
-  sickLeaveWeekendDays?: number;
+//   sickLeaveWeekDays?: number;
+//   sickLeaveWeekendDays?: number;
 
-  holidays?: number;
-  usedVacation?: number;
-  bloodDonation?: number;
-};
-export type PayloadsKeys = keyof PayloadType;
+//   holidays?: number;
+//   usedVacation?: number;
+//   bloodDonation?: number;
+// };
+// export type PayloadsKeys = keyof PayloadType;
 
-type Entries<T> = {
-  [K in keyof T]: [K, T[K]];
-}[keyof T][];
-// Entries is the function returning type [[key,val],...]
+// // Entries is the function returning type [[key,val],...]
+// type Entries<T> = {
+//   [K in keyof T]: [K, T[K]];
+// }[keyof T][];
 
-export type EntriesSalaryInit = Entries<SalaryInit>;
+// type EntriesSalaryInit = Entries<SalaryInit>;
 
 // TS PICK & OMIT EXAMPLE:
 

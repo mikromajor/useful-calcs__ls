@@ -8,49 +8,50 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { useAppSelector, useAppDispatch } from "store/hooks/redux";
 import { alcoActions } from "store/reducer/alcoReducer";
 import { DayInfo } from "types/alcoTypes";
+import { AppLanguages } from "types/appTypes";
 import updateLocale from "dayjs/plugin/updateLocale";
+import "dayjs/locale/uk";
+import "dayjs/locale/pl";
 
 dayjs.extend(updateLocale);
 
-// Replace "en" with the name of the locale you want to update.
 dayjs.updateLocale("en", {
-  // Sunday = 0, Monday = 1.
+  weekStart: 1,
+});
+
+dayjs.updateLocale("uk", {
+  weekStart: 1,
+});
+dayjs.updateLocale("pl", {
   weekStart: 1,
 });
 
 function ViewInfoDay(
   props: PickersDayProps<Dayjs> & {
-    highlightedDays?: DayInfo[];
-  }
+    highlightedDays: DayInfo[];
+  },
 ) {
-  // TODO fix problem with highlightedDays
+  const { highlightedDays, ...otherProps } = props;
+  const { day, outsideCurrentMonth } = otherProps;
 
-  const { outsideCurrentMonth } = props;
-  const { currentDate, yearData } = useAppSelector((state) => state.alcoReducer);
-  const { month } = currentDate;
-  const { months } = yearData;
-  const isMonthData = months[Number(month)];
-  const highlightedDaysInMonth = !!isMonthData ? isMonthData.days : [];
-
-  const isSelected = !outsideCurrentMonth && highlightedDaysInMonth[props.day.date()];
+  const isSelected = !outsideCurrentMonth && highlightedDays[day.date()];
 
   return (
     <Badge
-      key={props.day.toString()}
+      key={day.toString()}
       overlap='circular'
       color='secondary'
       max={999}
       badgeContent={isSelected && isSelected.totalVodka > 0 ? isSelected.totalVodka.toString() : undefined}
     >
-      <PickersDay {...props} outsideCurrentMonth={outsideCurrentMonth} day={props.day} />
+      <PickersDay {...otherProps} />
     </Badge>
   );
 }
 
 export function CalendarDayInfo() {
-  // TODO: change calendar's language when app lang change
   const { currentDate, yearData } = useAppSelector((state) => state.alcoReducer);
-  const { currentTheme } = useAppSelector((state) => state.appReducer);
+  const { currentTheme, currentLang } = useAppSelector((state) => state.appReducer);
   const { day, month, year } = currentDate;
 
   const dispatch = useAppDispatch();
@@ -60,31 +61,37 @@ export function CalendarDayInfo() {
   const isMonthData = months[Number(month)];
   const highlightedDays = !!isMonthData ? isMonthData.days : [];
 
-  const changeDate = (date: Dayjs) => {
-    if (date && date !== null) {
-      const newDay = date.date().toString();
-      const newMonth = (date.month() + 1).toString();
-      const newYear = date.year().toString();
+  const adapterLocale = {
+    [AppLanguages.UA]: "uk",
+    [AppLanguages.PL]: "pl",
+    [AppLanguages.EN]: "en",
+  }[currentLang];
 
-      newYear !== year && dispatch(changeYear(newYear));
-      newMonth !== month && dispatch(changeMonth(newMonth));
-      newDay !== day && dispatch(changeDay(newDay));
-    }
+  const CustomViewInfoDay = React.useCallback(
+    (props: PickersDayProps<Dayjs>) => <ViewInfoDay {...props} highlightedDays={highlightedDays} />,
+    [highlightedDays],
+  );
+
+  const handleDateChange = (date: Dayjs | null) => {
+    if (!date) return;
+
+    const newDay = date.date().toString();
+    const newMonth = (date.month() + 1).toString();
+    const newYear = date.year().toString();
+
+    if (newYear !== year) dispatch(changeYear(newYear));
+    if (newMonth !== month) dispatch(changeMonth(newMonth));
+    if (newDay !== day) dispatch(changeDay(newDay));
   };
 
   return (
     <div className={`alco-counter__calendar-day-info alco-counter__calendar-day-info--${currentTheme}`}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={adapterLocale}>
         <DateCalendar
           value={dayjs(year + "-" + month + "-" + day)}
-          onChange={(date) => changeDate(dayjs(date))}
+          onChange={handleDateChange}
           slots={{
-            day: ViewInfoDay,
-          }}
-          slotProps={{
-            day: {
-              highlightedDays,
-            } as any,
+            day: CustomViewInfoDay,
           }}
           showDaysOutsideCurrentMonth
           fixedWeekNumber={6}
