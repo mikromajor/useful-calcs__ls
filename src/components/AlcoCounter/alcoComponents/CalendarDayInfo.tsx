@@ -95,7 +95,7 @@ export function CalendarDayInfo() {
           }}
           showDaysOutsideCurrentMonth
           fixedWeekNumber={6}
-          dayOfWeekFormatter={(weekday) => `${weekday.format("ddd")}.`}
+          dayOfWeekFormatter={(weekday) => weekday.format("dd")}
           views={["year", "month", "day"]}
           onMonthChange={(date) => {
             dispatch(changeMonth((date.month() + 1).toString()));
