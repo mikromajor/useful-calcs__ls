@@ -51,6 +51,22 @@ export const Input = ({ payloadsKey }: InputProps) => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const form = e.currentTarget.closest(".salary");
+      if (!form) return;
+
+      const inputs = Array.from(form.querySelectorAll("input.salary__input")) as HTMLInputElement[];
+      const currentIndex = inputs.indexOf(e.currentTarget);
+      const nextInput = inputs[currentIndex + 1];
+
+      if (nextInput) {
+        nextInput.focus();
+      }
+    }
+  };
+
   return (
     <div className='salary__input-wrapper'>
       <button
@@ -70,6 +86,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
 
           changeInputValue(val);
         }}
+        onKeyDown={handleKeyDown}
         value={String(salaryReducer[payloadsKey])}
       />
 
