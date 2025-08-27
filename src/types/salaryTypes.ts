@@ -1,29 +1,29 @@
 // import { SALARY_CONTENT } from "constants/salaryConstants";
-interface SalaryDate {
+export interface SalaryDate {
   month: number;
   year: number;
 }
-interface SalaryRates {
+export interface SalaryRates {
   salaryRateGrossPerHour: number;
   salaryRateGrossPerMonth: number;
   premiumRate: number;
   premiumUzn: number;
   taxRate: number;
 }
-interface SalaryExtraHours {
+export interface SalaryExtraHours {
   extraHours_50: number;
   extraHours_100: number;
   extraHours_120: number;
 }
 
-interface SalaryWorkDaysDecrements {
+export interface SalaryWorkDaysDecrements {
   holidays: number;
   usedVacation: number;
   bloodDonation: number;
   sickLeaveWeekDays: number;
   sickLeaveWeekendDays: number;
 }
-interface SalaryCalculatedData {
+export interface SalaryCalculatedData {
   nettoPerHours: number;
   workDays: number;
   weekendDays: number;
@@ -32,12 +32,15 @@ interface SalaryCalculatedData {
   extraSalary: number;
   totalSalary: number;
 }
-type SalaryInputs = SalaryDate & SalaryRates & SalaryExtraHours & SalaryWorkDaysDecrements;
+export type SalaryInputs = SalaryDate & SalaryRates & SalaryExtraHours & SalaryWorkDaysDecrements;
+
 export type SalaryInputsKeys = keyof SalaryInputs;
 
-export type PayloadType = {
-  [K in keyof SalaryInputs]: Pick<SalaryInputs, K>;
-}[keyof SalaryInputs];
+export type SalaryCalculatedDataKeys = keyof SalaryCalculatedData;
+
+// export type PayloadType = {
+//   [K in keyof SalaryInputs]: Pick<SalaryInputs, K>;
+// }[keyof SalaryInputs];
 
 export type SalaryInit = SalaryDate & SalaryRates & SalaryExtraHours & SalaryWorkDaysDecrements & SalaryCalculatedData;
 
@@ -66,7 +69,7 @@ export type SalaryInit = SalaryDate & SalaryRates & SalaryExtraHours & SalaryWor
 //   totalSalary: number;
 // };
 
-export type KeysSalaryInit = keyof SalaryInit;
+export type SalaryInitKeys = keyof SalaryInit;
 
 // export type PayloadType = {
 //   month?: number;

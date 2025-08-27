@@ -1,7 +1,7 @@
 import { amountWeekendsAndWeekdays, isNum, determExtraSalary, determStandardSalary, determNettoPerHour } from ".";
-import { PayloadType, SalaryInit } from "types/salaryTypes";
+import { SalaryInit, SalaryInputs } from "types/salaryTypes";
 
-export const calculateSalary = (state: SalaryInit, payload: PayloadType) => {
+export const calculateSalary = (state: SalaryInit, payload: SalaryInputs) => {
   const {
     salaryRateGrossPerHour,
     // salaryRateGrossPerMonth,

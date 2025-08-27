@@ -1,32 +1,58 @@
-import { KeysSalaryInit, SalaryInit } from "types/salaryTypes";
+import {
+  SalaryInitKeys,
+  SalaryInit,
+  SalaryDate,
+  SalaryRates,
+  SalaryCalculatedData,
+  SalaryExtraHours,
+  SalaryWorkDaysDecrements,
+  SalaryCalculatedDataKeys,
+} from "types/salaryTypes";
 import { AppLanguages } from "types/appTypes";
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
 
-export const SALARY_INIT: SalaryInit = {
-  year: currentYear,
-  month: currentMonth,
+const SALARY_DATE: SalaryDate = { month: currentMonth, year: currentYear };
+
+const SALARY_RATES: SalaryRates = {
   salaryRateGrossPerHour: 0,
   salaryRateGrossPerMonth: 0,
   premiumRate: 0,
   premiumUzn: 0,
   taxRate: 27,
+};
+
+const SALARY_EXTRA_HOURS: SalaryExtraHours = {
+  extraHours_50: 0,
+  extraHours_100: 0,
+  extraHours_120: 0,
+};
+
+const SALARY_WORK_DAYS_DECREMENTS: SalaryWorkDaysDecrements = {
+  holidays: 0,
+  usedVacation: 0,
+  bloodDonation: 0,
+  sickLeaveWeekDays: 0,
+  sickLeaveWeekendDays: 0,
+};
+
+const SALARY_CALCULATED_DATA: SalaryCalculatedData = {
   nettoPerHours: 0,
   workDays: 0,
   weekendDays: 0,
   workHours: 0,
-  extraHours_50: 0,
-  extraHours_100: 0,
-  extraHours_120: 0,
-  sickLeaveWeekDays: 0,
-  sickLeaveWeekendDays: 0,
-  holidays: 0,
-  usedVacation: 0,
-  bloodDonation: 0,
   standardSalary: 0,
   extraSalary: 0,
   totalSalary: 0,
+};
+
+export const SALARY_INIT: SalaryInit = {
+  ...SALARY_DATE,
+  ...SALARY_RATES,
+  ...SALARY_EXTRA_HOURS,
+  ...SALARY_WORK_DAYS_DECREMENTS,
+  ...SALARY_CALCULATED_DATA,
 };
 
 export const PREMIUM_COEFFICIENT = {
@@ -40,7 +66,7 @@ export const SOCIAL_COEFFICIENTS = {
   bloodDonationCoefficient: 1,
 };
 
-export const SALARY_KEYS = Object.keys(SALARY_INIT) as KeysSalaryInit[];
+export const SALARY_KEYS = Object.keys(SALARY_INIT) as SalaryInitKeys[];
 
 export const NO_INPUTS = [
   "nettoPerHours",
