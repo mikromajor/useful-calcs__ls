@@ -1,21 +1,31 @@
 import {
-  SalaryInitKeys,
-  SalaryInit,
   SalaryDate,
+  SalaryDateKeys,
   SalaryRates,
-  SalaryCalculatedData,
+  SalaryRatesKeys,
   SalaryExtraHours,
+  SalaryExtraHoursKeys,
   SalaryWorkDaysDecrements,
+  SalaryWorkDaysDecrementsKeys,
+  SalaryCalculatedData,
   SalaryCalculatedDataKeys,
+  SalaryInit,
+  SalaryInitKeys,
 } from "types/salaryTypes";
 import { AppLanguages } from "types/appTypes";
+import { amountWeekendsAndWeekdays } from "store/reducer/salaryHandlers";
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
+const { weekdays, weekends } = amountWeekendsAndWeekdays(currentYear, currentMonth);
 
-const SALARY_DATE: SalaryDate = { month: currentMonth, year: currentYear };
+const workHours = weekdays * 8;
 
-const SALARY_RATES: SalaryRates = {
+const DATE: SalaryDate = { month: currentMonth, year: currentYear };
+
+export const DATE_KEYS = Object.keys(DATE) as SalaryDateKeys[];
+
+const RATES: SalaryRates = {
   salaryRateGrossPerHour: 0,
   salaryRateGrossPerMonth: 0,
   premiumRate: 0,
@@ -23,13 +33,17 @@ const SALARY_RATES: SalaryRates = {
   taxRate: 27,
 };
 
-const SALARY_EXTRA_HOURS: SalaryExtraHours = {
+export const RATES_KEYS = Object.keys(RATES) as SalaryRatesKeys[];
+
+const EXTRA_HOURS: SalaryExtraHours = {
   extraHours_50: 0,
   extraHours_100: 0,
   extraHours_120: 0,
 };
 
-const SALARY_WORK_DAYS_DECREMENTS: SalaryWorkDaysDecrements = {
+export const EXTRA_HOURS_KEYS = Object.keys(EXTRA_HOURS) as SalaryExtraHoursKeys[];
+
+const WORK_DAYS_DECREMENTS: SalaryWorkDaysDecrements = {
   holidays: 0,
   usedVacation: 0,
   bloodDonation: 0,
@@ -37,23 +51,29 @@ const SALARY_WORK_DAYS_DECREMENTS: SalaryWorkDaysDecrements = {
   sickLeaveWeekendDays: 0,
 };
 
-const SALARY_CALCULATED_DATA: SalaryCalculatedData = {
+export const WORK_DAYS_DECREMENTS_KEYS = Object.keys(WORK_DAYS_DECREMENTS) as SalaryWorkDaysDecrementsKeys[];
+
+const CALCULATED_DATA: SalaryCalculatedData = {
   nettoPerHours: 0,
-  workDays: 0,
-  weekendDays: 0,
-  workHours: 0,
+  workDays: weekdays,
+  weekendDays: weekends,
+  workHours: workHours,
   standardSalary: 0,
   extraSalary: 0,
   totalSalary: 0,
 };
 
+export const CALCULATED_DATA_KEYS = Object.keys(CALCULATED_DATA) as SalaryCalculatedDataKeys[];
+
 export const SALARY_INIT: SalaryInit = {
-  ...SALARY_DATE,
-  ...SALARY_RATES,
-  ...SALARY_EXTRA_HOURS,
-  ...SALARY_WORK_DAYS_DECREMENTS,
-  ...SALARY_CALCULATED_DATA,
+  ...DATE,
+  ...RATES,
+  ...EXTRA_HOURS,
+  ...WORK_DAYS_DECREMENTS,
+  ...CALCULATED_DATA,
 };
+
+export const SALARY_INIT_KEYS = Object.keys(SALARY_INIT) as SalaryInitKeys[];
 
 export const PREMIUM_COEFFICIENT = {
   pr_50: 1.5,
@@ -66,22 +86,9 @@ export const SOCIAL_COEFFICIENTS = {
   bloodDonationCoefficient: 1,
 };
 
-export const SALARY_KEYS = Object.keys(SALARY_INIT) as SalaryInitKeys[];
-
-export const NO_INPUTS = [
-  "nettoPerHours",
-  "workDays",
-  "weekendDays",
-  "workHours",
-  "standardSalary",
-  "extraSalary",
-  "totalSalary",
-];
-
 export const SALARY_CONTENT = {
   [AppLanguages.UA]: {
     header: "Зарплата",
-
     year: "Рік",
     month: "Місяць",
     salaryRateGrossPerHour: "Ставка брутто, зл/год",

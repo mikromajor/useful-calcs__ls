@@ -1,54 +1,34 @@
-import { useAppSelector, useAppDispatch } from "store/hooks/redux";
+import { useAppDispatch } from "store/hooks/redux";
 
-import { salaryActions } from "store/reducer/salaryReducer";
-import { SalaryInputsKeys } from "types/salaryTypes";
+import { SalaryReducerActionsType } from "store/reducer/salaryReducer";
+
+import { AppThemes } from "types/appTypes";
+import { PayloadType, SalaryInputsKeys } from "types/salaryTypes";
 
 type InputProps = {
   payloadsKey: SalaryInputsKeys;
+  action: SalaryReducerActionsType[keyof SalaryReducerActionsType];
+  currentTheme: AppThemes;
+  value: number;
 };
 
-export const Input = ({ payloadsKey }: InputProps) => {
+export const Input = ({ value, payloadsKey, action, currentTheme }: InputProps) => {
   const dispatch = useAppDispatch();
-  const { currentTheme } = useAppSelector((state) => state.appReducer);
-
-  const salaryReducer = useAppSelector((state) => state.salaryReducer);
-
-  const { getSalary, changeSalaryDate } = salaryActions;
 
   const changeInputValue = (val: number) => {
-    if (payloadsKey === "month" || payloadsKey === "year") {
-      dispatch(
-        changeSalaryDate({
-          ...salaryReducer,
-          [payloadsKey]: val,
-        }),
-      );
-    } else {
-      dispatch(
-        getSalary({
-          ...salaryReducer,
-          [payloadsKey]: val,
-        }),
-      );
-    }
+    dispatch(
+      action({
+        [payloadsKey]: val,
+      } as PayloadType),
+    );
   };
 
   const changeByOne = (val: number) => {
-    if (payloadsKey === "month" || payloadsKey === "year") {
-      dispatch(
-        changeSalaryDate({
-          ...salaryReducer,
-          [payloadsKey]: salaryReducer[payloadsKey] + val,
-        }),
-      );
-    } else {
-      dispatch(
-        getSalary({
-          ...salaryReducer,
-          [payloadsKey]: salaryReducer[payloadsKey] + val,
-        }),
-      );
-    }
+    dispatch(
+      action({
+        [payloadsKey]: value + val,
+      } as PayloadType),
+    );
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -87,7 +67,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
           changeInputValue(val);
         }}
         onKeyDown={handleKeyDown}
-        value={String(salaryReducer[payloadsKey])}
+        value={String(value)}
       />
 
       <button
