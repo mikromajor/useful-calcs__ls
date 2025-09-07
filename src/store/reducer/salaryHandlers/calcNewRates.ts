@@ -9,14 +9,14 @@ export const calcNewRates = (state: SalaryInit, payload: PayloadType) => {
   if ("salaryRateGrossPerHour" in payload) {
     state.nettoPerHours = determNettoPerHour(payload.salaryRateGrossPerHour, taxRate);
 
-    state.salaryRateGrossPerMonth = state.salaryRateGrossPerHour * workHours;
+    state.salaryRateGrossPerMonth = Math.round(state.salaryRateGrossPerHour * workHours * 100) / 100;
   }
   if ("salaryRateGrossPerMonth" in payload) {
-    const grossPerHour = payload.salaryRateGrossPerMonth / workHours;
+    const grossPerHour = Math.round((payload.salaryRateGrossPerMonth / workHours) * 100) / 100;
 
     state.nettoPerHours = determNettoPerHour(grossPerHour, taxRate);
 
-    state.salaryRateGrossPerHour = payload.salaryRateGrossPerMonth / workHours;
+    state.salaryRateGrossPerHour = Math.round((payload.salaryRateGrossPerMonth / workHours) * 100) / 100;
   }
   if ("taxRate" in payload) {
     state.nettoPerHours = determNettoPerHour(state.salaryRateGrossPerHour, payload.taxRate);
