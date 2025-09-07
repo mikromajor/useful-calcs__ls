@@ -18,6 +18,9 @@ export const calcNewRates = (state: SalaryInit, payload: PayloadType) => {
 
     state.salaryRateGrossPerHour = payload.salaryRateGrossPerMonth / workHours;
   }
+  if ("taxRate" in payload) {
+    state.nettoPerHours = determNettoPerHour(state.salaryRateGrossPerHour, payload.taxRate);
+  }
 
   calculateSalaries(state);
 };
