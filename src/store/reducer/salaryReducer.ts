@@ -5,11 +5,21 @@ import {
 } from "@reduxjs/toolkit";
 import { SALARY_INIT } from "constants/salaryConstants";
 import { PayloadType } from "types/salaryTypes";
-import { checkDates, updateStateUsingStore, handleCalculateData, saveSalaryInStorage, calcNewRates } from "./salaryHandlers";
+import {
+  checkDates,
+  updateStateUsingStore,
+  handleCalculateData,
+  saveSalaryInStorage,
+  calcNewRates,
+  tryStorageData,
+} from "./salaryHandlers";
+
+const store = tryStorageData();
 
 export const salaryReducer = createSlice({
   name: "salaryState",
-  initialState: SALARY_INIT,
+  // initialState: SALARY_INIT,
+  initialState: !!store ? store : SALARY_INIT,
   reducers: {
     changeRates: (state, action: PayloadAction<PayloadType>) => {
       calcNewRates(state, action.payload);

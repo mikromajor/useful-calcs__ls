@@ -15,3 +15,4 @@ export * from "./determStandardSalary";
 export * from "./determNettoPerHour";
 export * from "./calcNewRates";
 export * from "./calculateSalaries";
+export * from "./tryStorageData";
