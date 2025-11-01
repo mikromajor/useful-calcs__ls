@@ -1,5 +1,5 @@
 import { SalaryInit } from "types/salaryTypes";
-import { getKey } from "./getKey";
+import { getSalaryKey } from "./getSalaryKey";
 
 export const saveSalaryInStorage = (state: SalaryInit) =>
-  window.localStorage.setItem(getKey(state.year, state.month), JSON.stringify(state));
+  window.localStorage.setItem(getSalaryKey([state.year, state.month]), JSON.stringify(state));

@@ -1,6 +1,7 @@
 import { SalaryInit } from "types/salaryTypes";
 import { SALARY_INIT } from "constants/salaryConstants";
-import { amountWeekendsAndWeekdays, getKey } from ".";
+import { amountWeekendsAndWeekdays, getSalaryKey } from ".";
+import { getStorage } from "lib";
 
 export const updateStateUsingStore = (state: SalaryInit) => {
   if (typeof window === "undefined") {
@@ -8,13 +9,12 @@ export const updateStateUsingStore = (state: SalaryInit) => {
   }
   const { year, month } = state;
   const { weekends, weekdays } = amountWeekendsAndWeekdays(year, month);
-  const dateKey = getKey(year, month);
 
   try {
-    const item = window.localStorage.getItem(dateKey);
+    const expectStorageData: SalaryInit | null = getStorage(getSalaryKey, [year, month]);
 
-    const update = !!item
-      ? (JSON.parse(item) as SalaryInit)
+    const update = !!expectStorageData
+      ? expectStorageData
       : {
           ...SALARY_INIT,
           workDays: weekdays,

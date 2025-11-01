@@ -1,25 +1,30 @@
-import { getKey } from ".";
+import { getSalaryKey } from ".";
+import { getStorage } from "lib";
 import { SalaryInit } from "types/salaryTypes";
 
 export const determineVacationPayCoefficient = (state: SalaryInit): number => {
-  let vacationPayCoefficientPerDay = 0;
+  const { year, month } = state;
+  let coef = 0;
+  let neededMonths = 0;
 
-  let pastsDateKey = "";
+  let expectStorageData: SalaryInit | null = null;
 
   for (let i = 1; i <= 3; i++) {
-    if (state.month - i > 0) {
-      pastsDateKey = getKey(state.year, state.month - i);
-    } else {
-      pastsDateKey = getKey(state.year - 1, state.month + 12 - i);
-    }
-    const item = window.localStorage.getItem(pastsDateKey);
-    const savedData = !!item && (JSON.parse(item) as SalaryInit);
+    neededMonths = month - i > 0 ? month - i : month - i + 12;
 
-    vacationPayCoefficientPerDay +=
-      !!savedData && savedData?.totalSalary && savedData?.workDays
-        ? savedData.totalSalary / savedData.workDays
-        : 8 * state.nettoPerHours;
+    expectStorageData = getStorage(getSalaryKey, [year, neededMonths]);
+
+    if (
+      expectStorageData &&
+      expectStorageData?.totalSalary !== undefined &&
+      expectStorageData?.workDays !== undefined &&
+      expectStorageData.workDays !== 0
+    ) {
+      coef += expectStorageData.totalSalary / expectStorageData.workDays;
+    } else {
+      coef += 8 * state.nettoPerHours; // default value if no data
+    }
   }
 
-  return vacationPayCoefficientPerDay / 3;
+  return coef / 3;
 };

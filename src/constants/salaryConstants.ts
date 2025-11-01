@@ -15,8 +15,13 @@ import {
 import { AppLanguages } from "types/appTypes";
 import { amountWeekendsAndWeekdays } from "store/reducer/salaryHandlers";
 
+//----to use current date in SALARY_INIT
+
+// import{getCurrentDate} from "lib"
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
+
+//--------||
 const { weekdays, weekends } = amountWeekendsAndWeekdays(currentYear, currentMonth);
 
 const workHours = weekdays * 8;

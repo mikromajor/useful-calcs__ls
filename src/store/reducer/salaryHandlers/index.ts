@@ -1,10 +1,9 @@
 export * from "./amountWeekendsAndWeekdays";
 export * from "./dayOfWeek";
 export * from "./daysInMonth";
-export * from "./getCurrentDate";
 export * from "./updateStateUsingStore";
 export * from "./handleCalculateData";
-export * from "./getKey";
+export * from "./getSalaryKey";
 export * from "./checkDates";
 export * from "./saveSalaryInStorage";
 export * from "./checkMonth";
@@ -15,4 +14,3 @@ export * from "./determStandardSalary";
 export * from "./determNettoPerHour";
 export * from "./calcNewRates";
 export * from "./calculateSalaries";
-export * from "./tryStorageData";
