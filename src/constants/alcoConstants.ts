@@ -3,7 +3,7 @@ import { getCurrentDate } from "lib";
 import { AppLanguages } from "types/appTypes";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
-const [currentDay, currentMonth, currentYear] = getCurrentDate(new Date());
+const [currentDay, currentMonth, currentYear] = getCurrentDate();
 
 const CURRENT_DATE = {
   day: currentDay,

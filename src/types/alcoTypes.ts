@@ -16,9 +16,9 @@ export interface YearInfo extends DayInfo {
 }
 
 interface CurrentDate {
-  day: string;
-  month: string;
-  year: string;
+  day: number;
+  month: number;
+  year: number;
 }
 
 export interface AlcoState {

@@ -11,12 +11,12 @@ import { getSalaryKey } from "./salaryHandlers";
 import { SalaryInit } from "types/salaryTypes";
 
 const { year, month } = SALARY_INIT;
-const store: SalaryInit | null = getStorage(getSalaryKey, [year, month]);
+const expectStorageData: SalaryInit | null = getStorage(getSalaryKey, [year, month]);
 
 export const salaryReducer = createSlice({
   name: "salaryState",
   // initialState: SALARY_INIT,
-  initialState: !!store ? store : SALARY_INIT,
+  initialState: !!expectStorageData ? expectStorageData : SALARY_INIT,
   reducers: {
     changeRates: (state, action: PayloadAction<PayloadType>) => {
       calcNewRates(state, action.payload);

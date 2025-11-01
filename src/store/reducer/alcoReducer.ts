@@ -1,43 +1,45 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { INIT_ALCO_STATE } from "constants/alcoConstants";
-import { tryStorageData, saveStateInStorage, setDecimal, addVodkaToState, getMaxValidDayInCurrentMonth } from "./alcoHandlers";
+import { saveStateInStorage, setDecimal, addVodkaToState, getMaxValidDayInCurrentMonth, getAlcoKey } from "./alcoHandlers";
+import { getStorage } from "lib";
 
-const store = tryStorageData(INIT_ALCO_STATE.currentDate.year);
+const initYear = INIT_ALCO_STATE.currentDate.year;
+const isStore = getStorage(getAlcoKey, [initYear, 0]);
 
 export const alcoReducer = createSlice({
   name: "alcoState",
-  initialState: !!store ? store : INIT_ALCO_STATE,
+  initialState: !!isStore ? isStore : INIT_ALCO_STATE,
   reducers: {
-    changeDay: (state, action: PayloadAction<string>) => {
-      const day = Number(action.payload);
+    changeDay: (state, action: PayloadAction<number>) => {
+      const day = action.payload;
       const { month, year } = state.currentDate;
 
-      state.currentDate.day = getMaxValidDayInCurrentMonth(day, Number(month), Number(year));
+      state.currentDate.day = getMaxValidDayInCurrentMonth(day, month, year);
     },
 
-    changeMonth: (state, action: PayloadAction<string>) => {
-      const month = Number(action.payload);
+    changeMonth: (state, action: PayloadAction<number>) => {
+      const month = action.payload;
       if (month > 0 && month < 13) {
         const { day, year } = state.currentDate;
 
-        state.currentDate.day = getMaxValidDayInCurrentMonth(Number(day), month, Number(year));
-        state.currentDate.month = month.toString();
+        state.currentDate.day = getMaxValidDayInCurrentMonth(day, month, year);
+        state.currentDate.month = month;
       }
     },
-    changeYear: (state, action: PayloadAction<string>) => {
+    changeYear: (state, action: PayloadAction<number>) => {
       const year = action.payload;
 
-      const isStoreData = tryStorageData(year);
+      const isStoreData = getStorage(getAlcoKey, [year, 0]);
 
       Object.assign(state, !!isStoreData ? isStoreData : INIT_ALCO_STATE, {
         currentDate: {
           ...state.currentDate,
-          year,
+          year: year,
         },
       });
     },
 
-    calculating: (state, action: PayloadAction<string[]>) => {
+    calculating: (state, action: PayloadAction<number[]>) => {
       const [vol, per] = action.payload.map((d) => Number(d));
 
       if (vol && per) {

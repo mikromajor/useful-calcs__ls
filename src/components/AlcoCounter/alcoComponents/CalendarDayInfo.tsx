@@ -58,7 +58,7 @@ export function CalendarDayInfo() {
   const { changeDay, changeMonth, changeYear } = alcoActions;
 
   const { months } = yearData;
-  const isMonthData = months[Number(month)];
+  const isMonthData = months[month];
   const highlightedDays = !!isMonthData ? isMonthData.days : [];
 
   const adapterLocale = {
@@ -75,9 +75,9 @@ export function CalendarDayInfo() {
   const handleDateChange = (date: Dayjs | null) => {
     if (!date) return;
 
-    const newDay = date.date().toString();
-    const newMonth = (date.month() + 1).toString();
-    const newYear = date.year().toString();
+    const newDay = date.date();
+    const newMonth = date.month() + 1;
+    const newYear = date.year();
 
     if (newYear !== year) dispatch(changeYear(newYear));
     if (newMonth !== month) dispatch(changeMonth(newMonth));
@@ -98,7 +98,7 @@ export function CalendarDayInfo() {
           dayOfWeekFormatter={(weekday) => weekday.format("dd")}
           views={["year", "month", "day"]}
           onMonthChange={(date) => {
-            dispatch(changeMonth((date.month() + 1).toString()));
+            dispatch(changeMonth(date.month() + 1));
           }}
         />
       </LocalizationProvider>

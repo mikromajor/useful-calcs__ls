@@ -1,6 +1,5 @@
 export { setDecimal } from "./setDecimal";
-export { createKey } from "./createKey";
-export { tryStorageData } from "./tryStorageData";
+export { getAlcoKey } from "./getAlcoKey";
 export { saveStateInStorage } from "./saveStateInStorage";
 export { trimFirstZero } from "./trimFirstZero";
 export { addVodkaToState } from "./addVodkaToState";
