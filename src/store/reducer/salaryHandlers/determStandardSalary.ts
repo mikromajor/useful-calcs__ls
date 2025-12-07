@@ -19,9 +19,9 @@ export const determStandardSalary = (state: SalaryInit) => {
 
   const averageVacationPayPerDay = determineVacationPayCoefficient(state);
 
-  const premiumConstPayment = premiumUzn * (1 - taxRate / 100);
+  // const premiumConstPayment = premiumUzn * (1 - taxRate / 100);
 
-  const premiumRatePayment = (premiumRate / 100) * nettoPerHours * workHours;
+  // const premiumRatePayment = (premiumRate / 100) * nettoPerHours * workHours;
 
   const bloodDonationPayment = bloodDonation * 8 * nettoPerHours;
 
@@ -32,7 +32,8 @@ export const determStandardSalary = (state: SalaryInit) => {
   const standardPayment = workHours * nettoPerHours;
 
   return Math.round(
-    standardPayment + sickPayment + vacationPayment + bloodDonationPayment + premiumRatePayment + premiumConstPayment,
+    standardPayment + sickPayment + vacationPayment + bloodDonationPayment,
+    /* + premiumRatePayment + premiumConstPayment,*/
   );
 };
 // TODO: зробити хворобові як середнє за останні 12 місяців

@@ -6,5 +6,7 @@ export const determExtraSalary = (state: SalaryInit) =>
     (state.extraHours_50 * PREMIUM_COEFFICIENT.pr_50 +
       state.extraHours_100 * PREMIUM_COEFFICIENT.pr_100 +
       state.extraHours_120 * PREMIUM_COEFFICIENT.pr_120) *
-      state.nettoPerHours
+      state.nettoPerHours +
+      state.premiumUzn * (1 - state.taxRate / 100) +
+      (state.premiumRate / 100) * state.nettoPerHours * state.workHours,
   );
