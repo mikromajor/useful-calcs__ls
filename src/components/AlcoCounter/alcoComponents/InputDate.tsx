@@ -25,7 +25,7 @@ export const InputDate = ({ data, changeData, label }: InputDataProps) => {
           variant={variantButton}
           size='small'
           onClick={() => {
-            dispatch(changeData(Number(data) + 1 + ""));
+            dispatch(changeData(Number(data) + 1));
           }}
         >
           +1
@@ -36,15 +36,15 @@ export const InputDate = ({ data, changeData, label }: InputDataProps) => {
           type='number'
           value={data}
           onChange={(e) => {
-            const newData = e.target.value;
-            newData > "0" && dispatch(changeData(newData));
+            const newData = Number(e.target.value);
+            newData > 0 && dispatch(changeData(newData));
           }}
         />
         <Button
           variant={variantButton}
           size='small'
           onClick={() => {
-            dispatch(changeData(Number(data) - 1 + ""));
+            dispatch(changeData(Number(data) - 1));
           }}
         >
           -1

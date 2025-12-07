@@ -14,7 +14,7 @@ export const InputLiquidPanel = () => {
   const { currentLang } = useAppSelector((state) => state.appReducer);
   const dispatch = useAppDispatch();
 
-  const handleCalculating = () => dispatch(calculating([volumeDrank, percent]));
+  const handleCalculating = () => dispatch(calculating([Number(volumeDrank), Number(percent)]));
 
   return (
     <div className='control-panel__inputs-panel control-panel__inputs-panel--direction-column'>
